@@ -11,19 +11,9 @@ body {
     height: 100%;
 }
 
-/* header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background-color: rgb(172, 241, 102);
-    height: 15%;
-} */
-
 nav {
     display: flex;
     position: relative;
-    /* justify-content: space-around; */
     align-items: center;
     min-height: 15%;
     background-color: rgb(172, 241, 102);
@@ -41,7 +31,7 @@ nav {
 }
 
 #mainContainer {
-    height: 80%;
+    /* height: 80%; */
     width: 100%;
     background-image: url(../Images/Background\ Image\ Index.jpg);
     background-size: cover;
@@ -59,14 +49,11 @@ nav {
 
 .logoWrapper {
     position: absolute;
-    left: 0;
+    left: 10%;
 }
 
 .logos {
-    /* display: flex; */
     width: 150px;
-    /* height: 50px; */
-    /* background: url(../Images/Aeolian\ Constructons\ Logo.png); */
 }
 
 .nav-links {
@@ -86,7 +73,6 @@ nav {
 }
 
 .nav-links li a {
-    /* transition: all 0.3s ease 0s; */
     text-decoration: none;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -196,15 +182,14 @@ nav {
     margin-top: -3px;
 }
 
-
 #mainActivityContainer {
-    height: 80%;
+    /* height: 80%; */
     width: 100%;
     background-color: white;
     background-size: cover;    
     background-repeat: no-repeat;
     opacity: 100%;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .carouselLeft {
@@ -218,8 +203,8 @@ nav {
 .carousel_image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    
+    object-fit: cover !important; /* Another option is: contain */
+  
 }
 
 .carousel_track-container {
@@ -250,12 +235,19 @@ nav {
     top: 50%;
     background: transparent;
     background-color: grey;
+    opacity: 0.5;
     transform: translateY(-50%);
     border: 0;
+    z-index: 999;
+}
+
+.carousel_button_contain_image_opacity {
+    opacity: 1;
+    z-index: 1000;
 }
 
 .carousel_button img {
-    width: 12px;
+    width: 20px;
 }
 
 .carouselLeft_button-left {
@@ -306,17 +298,6 @@ nav {
     overflow-y: auto;   
 }
 
-.video-wrapper {
-    position: relative;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    width: inherit;
-    height: inherit;
-}
-
 .gif {
     position: fixed;
     opacity: 0.7;
@@ -325,36 +306,30 @@ nav {
     object-fit: cover;
 }
 
+.alignTextToCenter {
+    text-align: center;
+}
+
 
 .activityCardLeft {
-    /* display: flex;
-    flex-direction: column; */
     background-color: rgb(247, 247, 100);
     background-color: rgb(247, 247, 100, 0.7);
     border-radius: 20px;
     padding: 100px;
-    /* margin-inline: auto; */
     margin-left: 10px;
     margin-right: 10px;
     width: 30%;
-    /* align-items: center; */
 }
 
 .activityCardRight {
-    /* display: flex;
-    flex-direction: column; */
     background-color: rgb(247, 247, 100);
     background-color: rgb(247, 247, 100, 0.7);
     border-radius: 20px;
     padding: 100px;
-    /* margin-inline: auto; */
     margin-left: 10px;
     margin-right: 10px;
     width: 30%;
-    /* align-items: center;
-    word-wrap: break-word; */
 }
-
 
 
 .carouselRight {
@@ -365,3 +340,87 @@ nav {
     padding-right: 10px;
 }
 
+#fullpage {
+    position: absolute;
+    top: 50%;    
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #fff;
+    border-radius: 5px;
+    width: 750px;
+    max-width: 80%;
+    object-fit: cover;    
+}
+
+footer {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#mainContactContainer {
+    height: 85%;
+    width: 100%;
+    background-image: url(../Images/Background\ Image\ Index.jpg);
+    background-color: white;
+    background-size: cover;    
+    background-repeat: no-repeat;
+    opacity: 100%;
+    overflow-y: hidden;
+}
+
+#mainServiceContainer {
+    height: 80%;
+    width: 100%;
+    background-image: url(../Images/Background\ Image\ Index.jpg);
+    background-color: white;
+    background-size: cover;    
+    background-repeat: no-repeat;
+    opacity: 100%;
+    overflow-y: hidden;
+}
+
+.size-13 {
+    font-size: 13px;
+    display: flex;
+}
+
+.plag {
+    color: green;
+    padding-left: 25px;
+    
+}
+
+.footer-flex {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.sec {
+    display: flex;
+}
+
+.ul-ident {
+    padding-left: 25px;
+    font-size: 17px;
+}
+
+/* .card ul li i:hover {
+    margin-top: -3px;
+} */
+
+/* footer ul.footer-flex li i:hover {
+    margin-top: -3px;
+} */
+
+footer ul li i:hover {
+    margin-top: -3px;
+} 

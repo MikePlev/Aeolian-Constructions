@@ -100,6 +100,18 @@ window.onload = function () {
 };
 
 function toFullPage(t) {
-    /* t.setAttribute("id", "#fullpage"); */
-    /* t.id = "fullpage"; */
+    if (t.classList.contains("fullscreenImage")) {
+        t.classList.remove("fullscreenImage");
+        t.style.objectfit = "cover";
+        //t.style.display = 'block';
+    }
+    else {
+        t.classList.add("fullscreenImage");
+        t.style.display = 'block';
+        var r = t.classList[0];
+        r.style.objectfit = "contain";
+        //t.getElementsByClassName("carousel_image").style.objectfit = "contain"; 
+        //t.classList[0].style.objectfit = "contain";        
+    }
+     
 }

@@ -424,3 +424,21 @@ footer {
 footer ul li i:hover {
     margin-top: -3px;
 } 
+
+li img:hover {
+    cursor: pointer;
+}
+
+.fullscreenImage {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background-size: contain;
+    background-repeat: no-repeat no-repeat;
+    background-position: center center;
+    background-color: black;
+}

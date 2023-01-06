@@ -97,21 +97,69 @@ window.onload = function () {
 
         });
     }
+    //const images = document.querySelectorAll('img.carousel_image');    
 };
 
-function toFullPage(t) {
-    if (t.classList.contains("fullscreenImage")) {
-        t.classList.remove("fullscreenImage");
-        t.style.objectfit = "cover";
-        //t.style.display = 'block';
+var globalreqfullscreen = getreqfullscreen();
+var globalexitfullscreen = getexitfullscreen();
+
+document.addEventListener('click', function(e){
+	var target = e.target
+	
+    if (target.classList.contains('carousel_image') && getfullscreenelement() == null){
+        globalreqfullscreen.call(target)
     }
-    else {
-        t.classList.add("fullscreenImage");
-        t.style.display = 'block';
-        var r = t.classList[0];
-        r.style.objectfit = "contain";
-        //t.getElementsByClassName("carousel_image").style.objectfit = "contain"; 
-        //t.classList[0].style.objectfit = "contain";        
-    }
-     
+    	
+    // Single Click Exit Full Screen
+	// else if (getfullscreenelement() != "undefined"){
+	// 	globalexitfullscreen.call(document)
+	// }
+	
+}, false);
+
+document.addEventListener('dblclick', function(e){
+	var target = e.target
+	if (target.tagName == "IMG" && getfullscreenelement()){
+		globalexitfullscreen.call(document)
+	}
+}, false);
+
+function getreqfullscreen(){
+	var root = document.documentElement
+	return root.requestFullscreen || root.webkitRequestFullscreen || root.mozRequestFullScreen || root.msRequestFullscreen
 }
+
+function getexitfullscreen(){
+	return document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen
+}
+
+function getfullscreenelement(){
+	return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement
+}
+//     var src = $(this).attr('src');
+//     var modal;
+  
+//     function removeModal() {
+//       modal.remove();
+//       $('body').off('keyup.modal-close');
+//     }
+//     modal = $('<div>').css({
+//         background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+//         //cursor: 'pointer'
+//         height: '100%',
+//         width: '100%',
+//         position: 'fixed',
+//         zIndex: '1000',
+//         top: '0',
+//         left: '0',
+//         backgroundSize: 'contain',
+//     }).click(function() {
+//       removeModal();
+//     }).appendTo('body');
+//     //handling ESC
+//     $('body').on('keyup.modal-close', function(e) {
+//       if (e.key === 'Escape') {
+//         removeModal();
+//       }
+//     });
+//   });

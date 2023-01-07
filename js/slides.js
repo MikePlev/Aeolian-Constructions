@@ -100,33 +100,47 @@ window.onload = function () {
     //const images = document.querySelectorAll('img.carousel_image');    
 };
 
-var globalreqfullscreen = getreqfullscreen();
-var globalexitfullscreen = getexitfullscreen();
+var carouselTargetLeft = Array.prototype.slice.call(document.getElementsByClassName('carouselLeft'));
+var carouselTargetRight = Array.prototype.slice.call(document.getElementsByClassName('carouselRight'));
 
-document.addEventListener('click', function(e){
-	var target = e.target
-	
-    if (target.classList.contains('carousel_image') && getfullscreenelement() == null){
-        globalreqfullscreen.call(target)
-    }
-    	
-    // Single Click Exit Full Screen
-	// else if (getfullscreenelement() != "undefined"){
-	// 	globalexitfullscreen.call(document)
-	// }
-	
-}, false);
+carouselTargetLeft.forEach(item => AddListenerToCarousel(item));
+carouselTargetRight.forEach(carousel => AddListenerToCarousel(carousel));
 
-document.addEventListener('dblclick', function(e){
-	var target = e.target
-	if (target.tagName == "IMG" && getfullscreenelement()){
-		globalexitfullscreen.call(document)
-	}
-}, false);
+function AddListenerToCarousel(ctl) {
+    var images = Array.prototype.slice.call(ctl.getElementsByClassName('carousel_image'));
+    images.forEach(item => ApplyEventListenerOnImages(item, ctl));
+}
 
-function getreqfullscreen(){
-	var root = document.documentElement
-	return root.requestFullscreen || root.webkitRequestFullscreen || root.mozRequestFullScreen || root.msRequestFullscreen
+function ApplyEventListenerOnImages(image, ctl) {
+    image.addEventListener('click', function(e) {
+        //target = e.target;       
+        var globalreqfullscreen = getreqfullscreen(ctl);
+        if (getfullscreenelement(ctl) == null){
+            globalreqfullscreen.call(ctl);    
+            
+            setTimeout(function() {
+                const track = ctl.querySelector('.carousel_track');
+                const slides = Array.from(track.children);
+                const slideWidth = slides[0].getBoundingClientRect().width;
+                const setSlidePosition = (slide, index) => {
+                    slide.style.left = slideWidth * index + 'px';
+                };
+                slides.forEach(setSlidePosition);
+            }, 100);                        
+        } 
+    },false);
+
+    image.addEventListener('dblclick', function(e) {
+        var target = e.target;
+        var globalexitfullscreen = getexitfullscreen();
+        if (target.tagName == "IMG" && getfullscreenelement()) {
+            globalexitfullscreen.call(document);
+        }
+    }, false);
+}
+
+function getreqfullscreen(ctl){	
+	return ctl.requestFullscreen || ctl.webkitRequestFullscreen || ctl.mozRequestFullScreen || ctl.msRequestFullscreen
 }
 
 function getexitfullscreen(){
@@ -136,30 +150,3 @@ function getexitfullscreen(){
 function getfullscreenelement(){
 	return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement
 }
-//     var src = $(this).attr('src');
-//     var modal;
-  
-//     function removeModal() {
-//       modal.remove();
-//       $('body').off('keyup.modal-close');
-//     }
-//     modal = $('<div>').css({
-//         background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
-//         //cursor: 'pointer'
-//         height: '100%',
-//         width: '100%',
-//         position: 'fixed',
-//         zIndex: '1000',
-//         top: '0',
-//         left: '0',
-//         backgroundSize: 'contain',
-//     }).click(function() {
-//       removeModal();
-//     }).appendTo('body');
-//     //handling ESC
-//     $('body').on('keyup.modal-close', function(e) {
-//       if (e.key === 'Escape') {
-//         removeModal();
-//       }
-//     });
-//   });

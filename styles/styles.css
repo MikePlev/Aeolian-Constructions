@@ -234,7 +234,7 @@ nav {
     position: absolute;
     top: 50%;
     background: transparent;
-    background-color: grey;
+    background-color: white;
     opacity: 0.5;
     transform: translateY(-50%);
     border: 0;
@@ -442,3 +442,6 @@ li img:hover {
     background-position: center center;
     background-color: black;
 }
+
+
+

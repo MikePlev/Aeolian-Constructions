@@ -96,8 +96,7 @@ window.onload = function () {
             hideShowArrows(slides, prevButton, nextButton, targetIndex);
 
         });
-    }
-    //const images = document.querySelectorAll('img.carousel_image');    
+    }       
 };
 
 var carouselTargetLeft = Array.prototype.slice.call(document.getElementsByClassName('carouselLeft'));
@@ -108,34 +107,57 @@ carouselTargetRight.forEach(carousel => AddListenerToCarousel(carousel));
 
 function AddListenerToCarousel(ctl) {
     var images = Array.prototype.slice.call(ctl.getElementsByClassName('carousel_image'));
-    images.forEach(item => ApplyEventListenerOnImages(item, ctl));
+    var videos = Array.prototype.slice.call(ctl.getElementsByClassName('video'));
+    var carouselContent = images.concat(videos);
+    carouselContent.forEach(item => ApplyEventListenerOnImages(item, ctl));
 }
 
 function ApplyEventListenerOnImages(image, ctl) {
-    image.addEventListener('click', function(e) {
-        //target = e.target;       
-        var globalreqfullscreen = getreqfullscreen(ctl);
-        if (getfullscreenelement(ctl) == null){
-            globalreqfullscreen.call(ctl);    
-            
-            setTimeout(function() {
-                const track = ctl.querySelector('.carousel_track');
-                const slides = Array.from(track.children);
-                const slideWidth = slides[0].getBoundingClientRect().width;
-                const setSlidePosition = (slide, index) => {
-                    slide.style.left = slideWidth * index + 'px';
-                };
-                slides.forEach(setSlidePosition);
-            }, 100);                        
-        } 
-    },false);
+    image.addEventListener('click', function (e) {
+        target = e.target;
+        if (target.classList.contains('video') == false) {
+            var globalreqfullscreen = getreqfullscreen(ctl);
+            if (getfullscreenelement(ctl) == null) {
+                globalreqfullscreen.call(ctl);
+
+                setTimeout(function () {
+                    const track = ctl.querySelector('.carousel_track');
+                    const slides = Array.from(track.children);
+                    const slideWidth = slides[0].getBoundingClientRect().width;
+                    const setSlidePosition = (slide, index) => {
+                        slide.style.left = slideWidth * index + 'px';
+                    };
+                    slides.forEach(setSlidePosition);
+                }, 100);
+            }
+        }
+        else {
+            if(target.paused) {
+                target.play();
+            }
+            else {
+                e.preventDefault();
+                target.pause();
+
+            }         
+        }
+    }, false);
 
     image.addEventListener('dblclick', function(e) {
         var target = e.target;
+        
+        if (target.classList.contains('video') == true) {
+            var globalreqfullscreen = getreqfullscreen(target);
+            if (getfullscreenelement(target) == null) {
+                globalreqfullscreen.call(target);
+            }
+        }
+
         var globalexitfullscreen = getexitfullscreen();
         if (target.tagName == "IMG" && getfullscreenelement()) {
             globalexitfullscreen.call(document);
         }
+              
     }, false);
 }
 

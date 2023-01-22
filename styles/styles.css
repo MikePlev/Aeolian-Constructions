@@ -364,23 +364,25 @@ footer {
 #mainContactContainer {
     height: 85%;
     width: 100%;
-    background-image: url(../Images/Background\ Image\ Index.jpg);
+    background-image: url(../Images/Επικοινωνία/20221027_100251040.jpg);
     background-color: white;
     background-size: cover;    
     background-repeat: no-repeat;
     opacity: 100%;
     overflow-y: hidden;
+    background-position: center;
 }
 
 #mainServiceContainer {
     height: 80%;
     width: 100%;
-    background-image: url(../Images/Background\ Image\ Index.jpg);
+    background-image: url(../Images/Υπηρεσίες/20221027_100219220.jpg);
     background-color: white;
     background-size: cover;    
     background-repeat: no-repeat;
     opacity: 100%;
     overflow-y: hidden;
+    background-position: center;
 }
 
 .size-13 {
@@ -390,8 +392,7 @@ footer {
 
 .plag {
     color: green;
-    padding-left: 25px;
-    
+    padding-left: 25px;   
 }
 
 .footer-flex {

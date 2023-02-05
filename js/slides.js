@@ -84,7 +84,46 @@ function updateDots(currentDot, targetDot) {
     currentDot.classList.remove('current-slide');
     targetDot.classList.add('current-slide');
 }
+let num;
+function handleKeyboardNav(e) {
+    if (!e) e = window.event;
+    var kc = e.keyCode;
+    if (num != null) {
+        if (kc == 37) {
+            previousSlide(-1, num);
+        }
+        if (kc == 39) {
+            nextSlide(1, num);
+        }
+    }
+}
 
+function bindKeyDownListener() {
+    if (document.addEventListener)
+        document.addEventListener("keydown", handleKeyboardNav, true);
+}
+
+function removeKeyDownListener() {
+    num = null;
+    document.removeEventListener("keydown", handleKeyboardNav, true);
+}
+
+function bindEscKeyDownListener() {
+    document.addEventListener("fullscreenchange", (e) => {
+        // exit fullscreen
+        if (e.currentTarget.fullscreenElement == null) {
+            //num = null;
+            removeKeyDownListener()
+        }
+        // enter fullscreen
+        else {
+            bindKeyDownListener();
+        }       
+    }, true);
+}
+
+//bind ESC key
+bindEscKeyDownListener();
 
 // window.onload = function () {
 //     const carouselsLeft = document.querySelectorAll(".carouselLeft") || [];
@@ -209,6 +248,8 @@ function ApplyEventListenerOnImages(image, ctl) {
             var globalreqfullscreen = getreqfullscreen(ctl);
             if (getfullscreenelement(ctl) == null) {
                 globalreqfullscreen.call(ctl);
+                var ch = ctl.firstElementChild.className;
+                num = slideId.indexOf(ch);
 
                 // setTimeout(function () {
                 //     const track = ctl.querySelector('.carousel_track');
@@ -240,12 +281,16 @@ function ApplyEventListenerOnImages(image, ctl) {
             var globalreqfullscreen = getreqfullscreen(target);
             if (getfullscreenelement(target) == null) {
                 globalreqfullscreen.call(target);
+                removeKeyDownListener();
             }
         }
 
         var globalexitfullscreen = getexitfullscreen();
         if (target.tagName == "IMG" && getfullscreenelement()) {
             globalexitfullscreen.call(document);
+            // var ch = ctl.firstElementChild.className;
+            // var num = slideId.indexOf(ch);
+            removeKeyDownListener();
         }
 
     }, false);

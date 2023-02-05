@@ -476,3 +476,9 @@ footer ul li i:hover {
 li img:hover {
     cursor: pointer;
 }
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+}

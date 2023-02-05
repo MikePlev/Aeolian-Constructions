@@ -1,5 +1,7 @@
-let slideIndex = [1,1,1,1,1,1];
+let slideIndex = [1, 1, 1, 1, 1, 1];
 let slideId = ["mySlides1", "mySlides2", "mySlides3", "mySlides4", "mySlides5", "mySlides6"];
+let navId = ["nav1", "nav2", "nav3", "nav4", "nav5", "nav6"];
+// showSlides(numberOfSlide, carouselNumber)
 showSlides(1, 0);
 showSlides(1, 1);
 showSlides(1, 2);
@@ -7,38 +9,77 @@ showSlides(1, 3);
 showSlides(1, 4);
 showSlides(1, 5);
 
-function plusSlides(n, no) {
-  showSlides(slideIndex[no] += n, no);
+function goToSlide(num, no) {
+    let i;
+    let x = document.getElementsByClassName(slideId[no]);
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[num - 1].style.display = "block";
+
+    var str = '.' + navId[no] + ' > .current-slide';
+    var currentDot = document.querySelectorAll(str)[0];
+    var targetDot = document.querySelectorAll('.' + navId[no])[0].children[num - 1];
+    slideIndex[no] = num;
+    updateDots(currentDot, targetDot);
+}
+
+function previousSlide(n, no) {
+    var previous = slideIndex[no] += n;
+    showSlides(previous, no);
+
+    if (previous < 1) {
+        var str = '.' + navId[no] + ' > .current-slide';
+        var currentDot = document.querySelectorAll(str)[0];
+        var size = document.querySelectorAll('.' + navId[no])[0].children.length;
+        var targetDot = document.querySelectorAll('.' + navId[no])[0].children[size - 1];
+        updateDots(currentDot, targetDot);
+    }
+    else {
+        var str = '.' + navId[no] + ' > .current-slide';
+        var currentDot = document.querySelectorAll(str)[0];
+        var targetDot = currentDot.previousElementSibling;
+        updateDots(currentDot, targetDot);
+    }
+}
+
+function nextSlide(n, no) {
+    var next = slideIndex[no] += n;
+    showSlides(next, no);
+    let x = document.getElementsByClassName(slideId[no]);
+    if (next > x.length) {
+        var str = '.' + navId[no] + ' > .current-slide';
+        var currentDot = document.querySelectorAll(str)[0];
+        var targetDot = document.querySelectorAll('.' + navId[no])[0].children[0];
+        updateDots(currentDot, targetDot);
+    }
+    else {
+        var str = '.' + navId[no] + ' > .current-slide';
+        var currentDot = document.querySelectorAll(str)[0];
+        var targetDot = currentDot.nextElementSibling;
+        updateDots(currentDot, targetDot);
+    }
 }
 
 function showSlides(n, no) {
-  let i;
-  let x = document.getElementsByClassName(slideId[no]);
-  if (n > x.length) {
-    slideIndex[no] = 1;   
-  }
-      
-  if (n < 1) {
-    slideIndex[no] = x.length;
-  }
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  x[slideIndex[no]-1].style.display = "block";  
+    let i;
+    let x = document.getElementsByClassName(slideId[no]);
 
-  //moveToSlide(track, currentSlide, prevSlide);
-  //updateDots(currentDot, prevDot);
+    if (n > x.length) {
+        slideIndex[no] = 1;
+    }
 
+    if (n < 1) {
+        slideIndex[no] = x.length;
+    }
+
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[slideIndex[no] - 1].style.display = "block";
 }
 
-const moveToSlide = (track, currentSlide, targetSlide) => {
-    if (targetSlide == null) return;
-    track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-    currentSlide.classList.remove('current-slide');
-    targetSlide.classList.add('current-slide');
-}
-
-const updateDots = (currentDot, targetDot) => {
+function updateDots(currentDot, targetDot) {
     if (targetDot == null) return;
     currentDot.classList.remove('current-slide');
     targetDot.classList.add('current-slide');
@@ -169,32 +210,32 @@ function ApplyEventListenerOnImages(image, ctl) {
             if (getfullscreenelement(ctl) == null) {
                 globalreqfullscreen.call(ctl);
 
-                setTimeout(function () {
-                    const track = ctl.querySelector('.carousel_track');
-                    const slides = Array.from(track.children);
-                    const slideWidth = slides[0].getBoundingClientRect().width;
-                    const setSlidePosition = (slide, index) => {
-                        slide.style.left = slideWidth * index + 'px';
-                    };
-                    slides.forEach(setSlidePosition);
-                }, 100);
+                // setTimeout(function () {
+                //     const track = ctl.querySelector('.carousel_track');
+                //     const slides = Array.from(track.children);
+                //     const slideWidth = slides[0].getBoundingClientRect().width;
+                //     const setSlidePosition = (slide, index) => {
+                //         slide.style.left = slideWidth * index + 'px';
+                //     };
+                //     slides.forEach(setSlidePosition);
+                // }, 100);
             }
         }
         else {
-            if(target.paused) {
+            if (target.paused) {
                 target.play();
             }
             else {
                 e.preventDefault();
                 target.pause();
 
-            }         
+            }
         }
     }, false);
 
-    image.addEventListener('dblclick', function(e) {
+    image.addEventListener('dblclick', function (e) {
         var target = e.target;
-        
+
         if (target.classList.contains('video') == true) {
             var globalreqfullscreen = getreqfullscreen(target);
             if (getfullscreenelement(target) == null) {
@@ -206,18 +247,18 @@ function ApplyEventListenerOnImages(image, ctl) {
         if (target.tagName == "IMG" && getfullscreenelement()) {
             globalexitfullscreen.call(document);
         }
-              
+
     }, false);
 }
 
-function getreqfullscreen(ctl){	
-	return ctl.requestFullscreen || ctl.webkitRequestFullscreen || ctl.mozRequestFullScreen || ctl.msRequestFullscreen
+function getreqfullscreen(ctl) {
+    return ctl.requestFullscreen || ctl.webkitRequestFullscreen || ctl.mozRequestFullScreen || ctl.msRequestFullscreen
 }
 
-function getexitfullscreen(){
-	return document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen
+function getexitfullscreen() {
+    return document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen
 }
 
-function getfullscreenelement(){
-	return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement
+function getfullscreenelement() {
+    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement
 }

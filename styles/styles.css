@@ -53,10 +53,6 @@ nav {
     left: 10%;
 }
 
-.logos {
-    width: 10rem;
-}
-
 .nav-links {
     display: flex;
     justify-content: space-around;
@@ -189,7 +185,7 @@ nav {
 }
 
 #mainActivityContainer {
-    /* height: 80%; */
+    /* height: calc(95% - 105px);  */
     width: 100%;
     background-color: white;
     background-size: cover;
@@ -519,27 +515,44 @@ li img:hover {
     margin: auto;
 }
 
-@media screen and (max-width: 826px) {
-    ::-webkit-scrollbar {
+@media screen and (max-width: 1219px) {
+    div.activityCardLeft::-webkit-scrollbar, div.activityCardRight::-webkit-scrollbar {
         width: 5px;
         height: 5px;
     }
 
-    ::-webkit-scrollbar-track {
+    div.activityCardLeft::-webkit-scrollbar-track, div.activityCardRight::-webkit-scrollbar-track {
         background: transparent;
     }
 
-    ::-webkit-scrollbar-thumb {
-        background: rgb(247 247 100 / 95%);
+    div.activityCardLeft::-webkit-scrollbar-thumb, div.activityCardRight::-webkit-scrollbar-thumb {
+        background: rgb(172, 241, 102, 95%);
     }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background: rgb(247 247 100 / 95%);
+    div.activityCardLeft::-webkit-scrollbar-thumb:hover, div.activityCardRight::-webkit-scrollbar-thumb:hover {
+        background: rgb(172, 241, 102, 95%);
     }
+
     .activityCardLeft {
         font-size: small;
     }
-    .activityCarRight {
+    .activityCardRight {
         font-size: small;
     }
+}
+
+@media screen and (max-width: 820px) {
+    #footer {
+        display: none;
+    }
+    #mainServiceContainer {
+        height: calc(100% - 105px);
+    }
+}
+
+.container-box {
+    display: flex;
+    flex-direction: row;
+    max-height: 50vh;
+    min-height: 300px;
 }

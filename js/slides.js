@@ -1,13 +1,32 @@
 let slideIndex = [1, 1, 1, 1, 1, 1];
 let slideId = ["mySlides1", "mySlides2", "mySlides3", "mySlides4", "mySlides5", "mySlides6"];
 let navId = ["nav1", "nav2", "nav3", "nav4", "nav5", "nav6"];
-// showSlides(numberOfSlide, carouselNumber)
-showSlides(1, 0);
-showSlides(1, 1);
-showSlides(1, 2);
-showSlides(1, 3);
-showSlides(1, 4);
-showSlides(1, 5);
+
+// TIP: showSlides(numberOfSlide, carouselNumber)
+if (GetCurrentPageName() == "road-activities.html") {
+    showSlides(1, 0);
+    showSlides(1, 1);
+    showSlides(1, 2);
+}
+else if(GetCurrentPageName() == "sand-activities.html") {
+    showSlides(1, 0);
+    showSlides(1, 1);
+}
+else if(GetCurrentPageName() == "energy-activities.html") {
+    showSlides(1, 0);
+}
+//showSlides(1, 0);
+//showSlides(1, 1);
+//showSlides(1, 2);
+//showSlides(1, 3);
+//showSlides(1, 4);
+//showSlides(1, 5);
+
+function GetCurrentPageName() {
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+    return page;
+}
 
 function goToSlide(num, no) {
     let i;

@@ -2,28 +2,63 @@ const navSlide = () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li');
+    const activitiesLi = document.querySelector('.activities');
+    const backArrow = document.querySelector('.back-arrow');
 
-    if(!burger || !nav) {
+    if (!burger || !nav) {
         return;
     }
 
     burger.addEventListener('click', () => {
+        // Toggle burger
+        burger.classList.toggle("active");
         // Toggle Nav
-        nav.classList.toggle('nav-active');
-
+        nav.classList.toggle('nav-active');      
+        
         // Animate links
         navLinks.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = ''
-            }
-            else {
-                link.style.animation = 'navLinkFade 0.5s ease forwards ' + (index / 7 + 0.5)  + 's';
-            }
-        });
+          if (link.style.animation) {
+              link.style.animation = ''
+          }
+          else {
+              link.style.animation = 'navLinkFade 0.5s ease forwards ' + (CalculateFadeInSpeed(index))  + 's';
+          }
+        });       
     });
+
+    if (activitiesLi != null) {
+      activitiesLi.addEventListener('click', () => {   
+        if (window.innerWidth <= 768) {
+          navLinks.forEach((element, index) => {
+            element.style.display = "none";
+          });
+  
+          var submenu = document.querySelector('.sub-nav-links');
+          submenu.classList.add("active");     
+          backArrow.classList.add("active"); 
+        }        
+        
+      });
+    }   
+
+    if (backArrow != null) {
+      backArrow.addEventListener('click', () => {
+        var submenu = document.querySelector('.sub-nav-links');
+        submenu.classList.remove("active");
+
+        navLinks.forEach((element, index) => {
+          element.style.display = "block";
+        });
+      });
+    }
+
 }
 
 navSlide();
+
+function CalculateFadeInSpeed(index) {
+  return (index * 0.8/10) + 0.5; 
+}
 
 ;((win, doc) => {
     'use strict';

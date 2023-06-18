@@ -66,7 +66,6 @@ nav {
 .nav-links li {
     list-style: none;
     display: inline-block;
-
 }
 
 .nav-links li a {
@@ -99,8 +98,7 @@ nav ul li:hover ul {
     z-index: 9999 !important;
 }
 
-nav ul li:hover ul li {
-     
+nav ul li:hover ul li {     
     display: inline;  
     padding: 5px;  /* This is to change the size of the sub menu */
     float: left;  
@@ -109,11 +107,10 @@ nav ul li:hover ul li {
     background: none;
 }
 
-
 nav ul li:hover ul li a  {  
     padding: 0px;  
     font-weight: normal;  
-    width: 168px;  
+    width: auto;  
     float: none;  
     padding: 0px 0 0px 9px;  
     display: block;  
@@ -122,6 +119,10 @@ nav ul li:hover ul li a  {
     border-left: none !important;  
     line-height: 25px;  
     border-right: none !important;  
+}
+
+.sub-nav-links {
+    display: none;
 }
 
 .card {
@@ -155,6 +156,10 @@ nav ul li:hover ul li a  {
     margin-right: 10%;
 }
 
+.back-arrow {
+    display: none;
+}
+
 @media screen and (max-width:1024px) {
     .nav-links {
         width: 50%;
@@ -175,20 +180,71 @@ nav ul li:hover ul li a  {
     .nav-links {
         position: absolute;
         right: 0px;
-        height: 90%;
-        top: 10%;
+        height: 100vh;
+        top: 0%;
         background-color: rgb(172, 241, 102);
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 30%;
         transform: translateX(100%);
-        transition: transform 0.5s ease-in;
         z-index: 999;
+    }
+
+    .sub-nav-links.active {
+        position: absolute;
+        right: 0px;
+        height: 100vh;
+        top: 0%;
+        background-color: rgb(172, 241, 102);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        transform: translateX(0%);
+        z-index: 999;
+    }
+
+    .sub-nav-links.active {
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        right: 0;
+        width: 30%;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+
+    .sub-nav-links.active li {
+        list-style: none;
+        display: inline-block;
+    }
+    
+    .sub-nav-links.active li a {
+        text-decoration: none;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        font-size: 18px;
+        color: green;
+    }
+    
+    .sub-nav-links.active li a:hover {
+        color: yellow;
+        transition: .3s;
     }
 
     .nav-links li {
         opacity: 0;
+    }
+
+    .back-arrow.active {   
+        position: absolute;
+        display: block;
+        cursor: pointer;
+        left: 70vw;
+        z-index: 999;
+        font-size: larger;
+        color:green;
     }
 
     .burger {
@@ -196,6 +252,19 @@ nav ul li:hover ul li a  {
         cursor: pointer;
         position: absolute;
         right: 0;
+        z-index: 999;
+    }
+
+    .burger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .burger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     #mainContainer {
@@ -445,7 +514,6 @@ button.carousel_button:hover {
 .alignTextToCenter {
     text-align: center;
 }
-
 
 .activityCardLeft {
     background-color: rgb(247, 247, 100);

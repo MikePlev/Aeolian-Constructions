@@ -4,26 +4,32 @@ const navSlide = () => {
     const navLinks = document.querySelectorAll('.nav-links li');
     const activitiesLi = document.querySelector('.activities');
     const backArrow = document.querySelector('.back-arrow');
+    const submenu = document.querySelector('.sub-nav-links');
 
     if (!burger || !nav) {
         return;
     }
 
     burger.addEventListener('click', () => {
-        // Toggle burger
-        burger.classList.toggle("active");
-        // Toggle Nav
-        nav.classList.toggle('nav-active');      
-        
-        // Animate links
-        navLinks.forEach((link, index) => {
-          if (link.style.animation) {
-              link.style.animation = ''
-          }
-          else {
-              link.style.animation = 'navLinkFade 0.5s ease forwards ' + (CalculateFadeInSpeed(index))  + 's';
-          }
-        });       
+        // Burger icon was clicked to show side navigation menu if true
+        var isBurgerActive = burger.classList.toggle("active");
+        if (isBurgerActive == true) {
+
+        }
+        else {
+          backArrow.style.display = 'none';
+        }
+        // Show side navigation menu if true 
+        nav.classList.toggle('nav-active');
+        // Always hide sub menu
+        submenu.classList.toggle("active", false);
+        if (isBurgerActive == true) {
+          // Animate all links
+          navLinks.forEach((link, index) => {           
+            link.style.display = 'inline-block';  
+            link.style.animation = 'navLinkFade 0.5s ease forwards ' + (CalculateFadeInSpeed(index))  + 's';     
+          });
+        }              
     });
 
     if (activitiesLi != null) {
@@ -33,22 +39,31 @@ const navSlide = () => {
             element.style.display = "none";
           });
   
-          var submenu = document.querySelector('.sub-nav-links');
-          submenu.classList.add("active");     
+          submenu.classList.add("active");
+          var submenuLi = document.querySelectorAll('.sub-nav-links li');
+          submenuLi.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = ''
+            }
+            else {
+                link.style.animation = 'navLinkFade 0.6s ease forwards ' + (CalculateFadeInSpeed(index))  + 's';
+            }
+          });
+          backArrow.style.display = 'inline-block';
           backArrow.classList.add("active"); 
-        }        
-        
+        }      
       });
     }   
 
     if (backArrow != null) {
-      backArrow.addEventListener('click', () => {
-        var submenu = document.querySelector('.sub-nav-links');
-        submenu.classList.remove("active");
+      backArrow.addEventListener('click', () => {    
+        submenu.classList.toggle("active");     
 
         navLinks.forEach((element, index) => {
-          element.style.display = "block";
+          element.style.display = "inline-block";        
         });
+
+        backArrow.style.display = 'none';
       });
     }
 

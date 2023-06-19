@@ -177,6 +177,11 @@ nav ul li:hover ul li a  {
         overflow-x: hidden;
     }
 
+    .textC {
+        line-height: 1;
+        font-size: small;
+    }
+
     .nav-links {
         position: absolute;
         right: 0px;
@@ -201,7 +206,7 @@ nav ul li:hover ul li a  {
         flex-direction: column;
         align-items: center;
         width: 30%;
-        transform: translateX(0%);
+        transform: translateX(0%);   
         z-index: 999;
     }
 
@@ -224,7 +229,7 @@ nav ul li:hover ul li a  {
         text-decoration: none;
         font-weight: bold;
         letter-spacing: 0.5px;
-        font-size: 18px;
+        font-size: 1rem;
         color: green;
     }
     
@@ -235,6 +240,10 @@ nav ul li:hover ul li a  {
 
     .nav-links li {
         opacity: 0;
+    }
+
+    .nav-links li a {
+        font-size: 1rem;
     }
 
     .back-arrow.active {   
@@ -519,7 +528,7 @@ button.carousel_button:hover {
     background-color: rgb(247, 247, 100);
     background-color: rgb(247, 247, 100, 0.7);
     border-radius: 20px;
-    padding: 2rem;
+    padding: 1rem;
     margin-left: 10px;
     margin-right: 10px;
     width: 30%;
@@ -531,7 +540,7 @@ button.carousel_button:hover {
     background-color: rgb(247, 247, 100);
     background-color: rgb(247, 247, 100, 0.7);
     border-radius: 20px;
-    padding: 2rem;
+    padding: 1rem;
     margin-left: 10px;
     margin-right: 10px;
     width: 30%;

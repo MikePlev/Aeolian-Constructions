@@ -19,6 +19,9 @@ else if(GetCurrentPageName() == "hydraulic-activities.html") {
     showSlides(1, 0);
     showSlides(1, 1);
 }
+else if(GetCurrentPageName() == "building-activities.html") {
+    showSlides(1, 0);   
+}
 //showSlides(1, 0);
 //showSlides(1, 1);
 //showSlides(1, 2);

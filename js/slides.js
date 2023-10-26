@@ -15,6 +15,10 @@ else if(GetCurrentPageName() == "sand-activities.html") {
 else if(GetCurrentPageName() == "energy-activities.html") {
     showSlides(1, 0);
 }
+else if(GetCurrentPageName() == "hydraulic-activities.html") {
+    showSlides(1, 0);
+    showSlides(1, 1);
+}
 //showSlides(1, 0);
 //showSlides(1, 1);
 //showSlides(1, 2);

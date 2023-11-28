@@ -164,11 +164,51 @@ nav ul li:hover ul li a  {
     .nav-links {
         width: 50%;
     }
+
+    nav ul li:hover ul {
+        width: 150px;  
+        display: block;  
+        float: left;  
+        position: absolute;  
+        left: calc(50% - 150px);
+        top: 20px;   
+        background: rgb(100, 204, 100);  
+        border: 1px solid green;
+        z-index: 9999 !important;
+    }
 }
 
 @media screen and (min-width:1025px) and (max-width:1200px) {
     .nav-links {
         width: 50%;
+    }
+    nav ul li:hover ul {
+        width: 150px;  
+        display: block;  
+        float: left;  
+        position: absolute;  
+        left: calc(50% - 160px);
+        top: 20px;   
+        background: rgb(100, 204, 100);  
+        border: 1px solid green;
+        z-index: 9999 !important;
+    }
+}
+
+@media screen and (min-width:1201px) {
+    .nav-links {
+        width: 40%;
+    }
+    nav ul li:hover ul {
+        width: 150px;  
+        display: block;  
+        float: left;  
+        position: absolute;  
+        left: calc(40% - 100px);  
+        top: 20px;   
+        background: rgb(100, 204, 100);  
+        border: 1px solid green;
+        z-index: 9999 !important;
     }
 }
 

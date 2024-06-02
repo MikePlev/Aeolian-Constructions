@@ -160,18 +160,52 @@ nav ul li:hover ul li a  {
     display: none;
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (min-width:882px) and (max-width:1024px) {
     .nav-links {
         width: 50%;
     }
 
+    .nav-links li a {
+        font-size: 14px;      
+    }
+
+    nav ul li:hover ul li a {
+        font-size: 14px;
+    }
+
     nav ul li:hover ul {
-        width: 150px;  
+        width: 117px;  
         display: block;  
         float: left;  
         position: absolute;  
-        left: calc(50% - 150px);
-        top: 20px;   
+        left: calc(46% - 150px);
+        top: 16px;   
+        background: rgb(100, 204, 100);  
+        border: 1px solid green;
+        z-index: 9999 !important;
+    }
+}
+
+@media screen and (max-width:882px) {
+    .nav-links {
+        width: 60%;
+    }
+
+    .nav-links li a {
+        font-size: 14px;      
+    }
+
+    nav ul li:hover ul li a {
+        font-size: 14px;
+    }
+
+    nav ul li:hover ul {
+        width: 117px;  
+        display: block;  
+        float: left;  
+        position: absolute;  
+        left: calc(45% - 150px);
+        top: 16px;   
         background: rgb(100, 204, 100);  
         border: 1px solid green;
         z-index: 9999 !important;
@@ -180,14 +214,14 @@ nav ul li:hover ul li a  {
 
 @media screen and (min-width:1025px) and (max-width:1200px) {
     .nav-links {
-        width: 50%;
+        width: 60%;
     }
     nav ul li:hover ul {
         width: 150px;  
         display: block;  
         float: left;  
         position: absolute;  
-        left: calc(50% - 160px);
+        left: calc(40% - 160px);
         top: 20px;   
         background: rgb(100, 204, 100);  
         border: 1px solid green;
@@ -197,14 +231,14 @@ nav ul li:hover ul li a  {
 
 @media screen and (min-width:1201px) {
     .nav-links {
-        width: 40%;
+        width: 50%;
     }
     nav ul li:hover ul {
         width: 150px;  
         display: block;  
         float: left;  
         position: absolute;  
-        left: calc(40% - 100px);  
+        left: calc(31% - 100px);  
         top: 20px;   
         background: rgb(100, 204, 100);  
         border: 1px solid green;
@@ -733,4 +767,39 @@ li img:hover {
     flex-direction: row;
     max-height: 50vh;
     min-height: 300px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-gap {
+    padding: 5px 10px 5px 5px;
+    margin: 5px 0px 10px 0px;
+    font-size: medium;
+}
+
+.pdf-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #36691c;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.pdf-button i {
+    margin-right: 8px;
+}
+
+.pdf-button:hover {
+    background-color: #0056b3;
 }
